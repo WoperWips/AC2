@@ -1,0 +1,22 @@
+<h2>Lista de Tarefas</h2>
+
+<div *ngIf="tarefas.length > 0; else semTarefas">
+  <ul>
+    <li *ngFor="let tarefa of tarefas">
+      <span [ngStyle]="{ 'text-decoration': tarefa.concluida ? 'line-through' : 'none' }">
+        {{ tarefa.titulo }}
+      </span>
+      <button (click)="concluir(tarefa.id)">
+        {{ tarefa.concluida ? 'Reabrir' : 'Concluir' }}
+      </button>
+      <button (click)="remover(tarefa.id)">Remover</button>
+    </li>
+  </ul>
+</div>
+
+<ng-template #semTarefas>
+  <p>Nenhuma tarefa cadastrada.</p>
+</ng-template>
+
+<br>
+<a routerLink="/cadastrar">Voltar para cadastro</a>
